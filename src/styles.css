@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --text-color: #555555;
+  --background-color: #E5E5E5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.body {
+  background-color: var(--background-color);
+  font-family: 'Arial', sans-serif;
+  font-size: 0.875rem;
+  color: var(--text-color);
+  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  max-width: 1366px;
+  height: 64px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  position: relative;
+  opacity: 1;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding-left: 24px;
+  opacity: 1;
+}
+
+header .logo img {
+  width: 96px;
+  height: auto;
+}
+
+
+header .header-info-right {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 64px;
+}
+
+header .header-info-right span {
+  font-size: 14px;
+  margin: 0 12px 0 12px;
+}
+
+header .header-info-right span.cb {
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  background: #F5F5F5 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .header-info-right span.cb:hover {
+  background-color: var(--text-color);
+  color: #FFFFFF;
+}
