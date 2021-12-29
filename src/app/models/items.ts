@@ -1,4 +1,4 @@
-export class items {
+export class Items {
   resourceURI?: string;
   name?: string;
   type?: string;

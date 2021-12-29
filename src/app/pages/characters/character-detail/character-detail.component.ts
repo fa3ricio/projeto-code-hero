@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { CharactersService } from 'app/api/characters.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { character } from 'app/models/character';
+import { Character } from 'app/models/character';
 import { share } from 'rxjs/operators';
 
 @Component({
@@ -13,8 +13,8 @@ import { share } from 'rxjs/operators';
 export class CharacterDetailComponent implements OnInit {
 
   characterId: number | string | null;
-  character$!: Observable<character>;
-  character!: character;
+  character$!: Observable<Character>;
+  character!: Character;
 
   constructor(
     private charactersService: CharactersService,

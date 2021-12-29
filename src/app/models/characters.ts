@@ -1,6 +1,6 @@
-import { character } from "./character"
+import { Character } from "./character"
 
-export class characters {
+export class Characters {
   code?: number;
   status?: string;
   copyright?: string;
@@ -11,7 +11,7 @@ export class characters {
     limit: number,
     total: number,
     ount: number,
-    results: [ character ]
+    results: [ Character ]
   };
   etag?: string
 }

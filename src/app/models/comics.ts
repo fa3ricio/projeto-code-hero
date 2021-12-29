@@ -1,8 +1,8 @@
-import { items } from "./items";
+import { Items } from "./items";
 
-export class comics {
+export class Comics {
   available?: number;
   returned?: number;
   collectionURI?: string;
-  items?: [items];
+  items?: [Items];
 }

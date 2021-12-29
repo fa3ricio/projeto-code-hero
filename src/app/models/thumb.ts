@@ -1,4 +1,4 @@
-export class thumb {
+export class Thumb {
   path?: string;
   extension?: string;
 }

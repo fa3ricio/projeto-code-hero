@@ -1,3 +1,4 @@
+import { ListCharactersService } from './api/listCharacters.service';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,8 @@ import { HeaderComponent } from './pages/components/header/header.component';
     HttpClientModule
   ],
   providers: [
-    CharactersService
+    CharactersService,
+    ListCharactersService
   ],
   bootstrap: [AppComponent]
 })

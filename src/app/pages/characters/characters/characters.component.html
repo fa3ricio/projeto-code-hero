@@ -1,4 +1,4 @@
-<ng-container *ngIf="characters$ | async let characters; else loading">
+<ng-container *ngIf="totalCharacters; let characters; else loading">
 <div class="container">
   <table class="table table-borderless characters-list">
     <thead>
@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let character of characters.data.results">
+      <ng-container *ngFor="let character of characters.data?.results">
 
           <tr routerLink="/characters/{{ character.id }}" routerLinkActive="active-link">
             <td>

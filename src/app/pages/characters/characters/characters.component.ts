@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CharactersService } from 'app/api/characters.service';
-import { character } from 'app/models/character';
-import { characters } from 'app/models/characters';
+import { ListCharactersService } from 'app/api/listCharacters.service';
+import { Characters } from 'app/models/characters';
+import { Character } from 'app/models/character';
 
 @Component({
   selector: 'app-characters',
@@ -12,27 +12,32 @@ import { characters } from 'app/models/characters';
 
 export class CharactersComponent implements OnInit {
 
-  characters$!: Observable<characters>;
-  // characters$!: characters;
-  character!: character;
+  totalCharacters!: Characters[];
+  // character!: Character;
 
-  constructor( private charactersService: CharactersService ) {}
+  constructor(private listCharactersService: ListCharactersService ) {}
 
   ngOnInit(): void {
-    this.getCharacters();
-  }
+    // this.getCharacters();
 
-  getCharacters() {
     let limit = 10;
-    this.characters$ = this.charactersService.getCharacters(limit);
-    this.characters$.subscribe(
-      result => {
-        console.log(result.data?.results[0]['name'])
-      }
-    )
+    let offset = undefined;
+
+    if(!this.totalCharacters || !this.totalCharacters.length) {
+      this.listCharactersService.getListCharacters(limit, offset);
+      this.listCharactersService.listCharacters$
+        .subscribe(list => {
+          this.totalCharacters = list
+          console.log('Lista Carregada... ', this.totalCharacters);
+        });
+    }
+
 
   }
 
+  getCharacters() {}
+
+  /*
   getCharacterDetail(id: number) {
     this.characters$ = this.charactersService.getCharacterDetail(id);
     this.characters$.subscribe(
@@ -42,6 +47,7 @@ export class CharactersComponent implements OnInit {
     )
 
   }
+  */
 
 
 
