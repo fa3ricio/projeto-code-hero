@@ -6,9 +6,8 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('../app/pages/characters/characters.module').then(m => m.CharactersModule)
   },
-  {
-    path: '', redirectTo: '/', pathMatch: 'full'
-  }
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'characters', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({

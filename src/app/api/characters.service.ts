@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from "rxjs";
-import { catchError, tap } from 'rxjs/operators';
-import { character } from "app/models/character";
+import { catchError, take, tap } from 'rxjs/operators';
+import { characters } from "app/models/characters";
 
 @Injectable({ providedIn: 'root'})
 
@@ -14,16 +14,31 @@ export class CharactersService {
   constructor( private http: HttpClient ) {}
 
   /** GET Characters from the MARVEL INTERACTIVE API TESTER */
-  getCharacters (limite: number): Observable<character[]> {
+  getCharacters (limite: number): Observable<any> {
 
     let limit = limite;
     const url = `${this.APIURL}${this.CHARACTERSURL}?limit=${limit}&apikey=${this.APIKEY}`;
 
-    return this.http.get<character[]>(url)
+    return this.http.get<characters>(url)
       .pipe(
         tap(() => console.log('Characters success')),
         catchError(this.handleError('getCharacters', []))
       );
+
+  }
+
+  /** GET Characters from the MARVEL INTERACTIVE API TESTER */
+  getCharacterDetail (id: number): Observable<any> {
+
+    const url = `${this.APIURL}${this.CHARACTERSURL}/${id}?apikey=${this.APIKEY}`;
+
+    return this.http.get<characters>(url)
+      .pipe(
+        take(1),
+        tap(() => console.log('Character Detail success')),
+        catchError(this.handleError('getCharacterDetail', []))
+      );
+
   }
 
   /**

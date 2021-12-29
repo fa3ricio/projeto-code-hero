@@ -1,10 +1,14 @@
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
-<p>character-detail works!</p>
+<ng-container *ngIf="character; else loading">
+  <ng-container *ngFor="let person of character.data.results">
+
+      <div class="character-detail">
+        <h1>{{ person.name }}</h1>
+        <img src="{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}" width="200px"/>
+      </div>
+
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  ...loading
+</ng-template>
