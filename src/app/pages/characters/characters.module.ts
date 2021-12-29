@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shares.module';
 import { CharactersRoutingModule } from './characters.routing.module';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -7,7 +8,8 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
 @NgModule({
   imports: [
     CommonModule,
-    CharactersRoutingModule
+    CharactersRoutingModule,
+    SharedModule
   ],
   declarations: [
     CharactersComponent,

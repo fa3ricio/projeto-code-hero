@@ -1,12 +1,75 @@
 <ng-container *ngIf="character; else loading">
   <ng-container *ngFor="let person of character.data.results">
+    <!-- Details Start -->
 
-      <div class="character-detail">
-        <h1>{{ person.name }}</h1>
-        <img src="{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}" width="200px"/>
+
+    <div class="header-featured">
+      <div class="title-character">
+        <span>{{ person.name }}</span>
       </div>
 
-  </ng-container>
+      <div class="filter-featured">
+        <div class="image-detail-featured" style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
+      </div>
+    </div>
+
+    <div class="container character-detail my-4">
+
+        <div class="container-white">
+          <div class="row">
+            <div class="col-xl-6">
+              <div class="image-detail" style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
+            </div>
+            <div class="col-xl-6">
+              <div class="title-detail">
+                <h1>{{ person.name }}</h1>
+              </div>
+              <div class="description-character-detail">
+                <ng-container *ngIf="person.description; else descriptionOff">
+                  <p>{{ person.description }}</p>
+                </ng-container>
+                <ng-template #descriptionOff>
+                  {{ person.name | split }} ainda não tem uma descrição.
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="character-series">
+              SÉRIES<br>
+              <ng-container *ngFor="let item of person.series.items">
+                {{ item.name }}<br>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            EVENTOS<br>
+            <div class="character-series">
+              <ng-container *ngFor="let item of person.events.items">
+                {{ item.name }}<br>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="character-series">
+              HISTÓRIAS EM QUADRINHOS<br>
+              <ng-container *ngFor="let item of person.comics.items">
+                {{ item.name }}<br>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+    <!-- Details End-->
+    </ng-container>
 </ng-container>
 
 <ng-template #loading>

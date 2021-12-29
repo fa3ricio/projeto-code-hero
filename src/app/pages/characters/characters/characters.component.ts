@@ -23,7 +23,8 @@ export class CharactersComponent implements OnInit {
   }
 
   getCharacters() {
-    this.characters$ = this.charactersService.getCharacters(5);
+    let limit = 10;
+    this.characters$ = this.charactersService.getCharacters(limit);
     this.characters$.subscribe(
       result => {
         console.log(result.data?.results[0]['name'])

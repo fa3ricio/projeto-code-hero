@@ -1,9 +1,8 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { CharactersService } from './api/characters.service';
-
 import { AppRoutingModule } from './app-routing.module';
+import { CharactersService } from './api/characters.service';
 import { AppComponent } from './app.component';
 import { CharactersModule } from './pages/characters/characters.module';
 import { HeaderComponent } from './pages/components/header/header.component';
@@ -19,7 +18,9 @@ import { HeaderComponent } from './pages/components/header/header.component';
     CharactersModule,
     HttpClientModule
   ],
-  providers: [CharactersService],
+  providers: [
+    CharactersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

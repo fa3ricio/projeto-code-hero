@@ -1,43 +1,44 @@
 <ng-container *ngIf="characters$ | async let characters; else loading">
+<div class="container">
+  <table class="table table-borderless characters-list">
+    <thead>
+      <tr>
+        <th colspan="2" scope="col">Personagem</th>
+        <th scope="col">Séries</th>
+        <th scope="col">Eventos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let character of characters.data.results">
 
-    <table class="table table-borderless characters-list">
-      <thead>
-        <tr>
-          <th colspan="2" scope="col">Personagem</th>
-          <th scope="col">Séries</th>
-          <th scope="col">Eventos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let character of characters.data.results">
+          <tr routerLink="/characters/{{ character.id }}" routerLinkActive="active-link">
+            <td>
+              <div class="thumb" style="background-image: url('{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}')"></div>
+            </td>
+            <td>
+              <div class="character-name">
+                {{ character.name }}
+              </div>
+            </td>
+            <td class="character-items">
+              <ng-container *ngFor="let item of character.series?.items | slice: 0:3">
+                {{item.name}}<br>
+              </ng-container>
+            </td>
+            <td class="character-items">
+              <ng-container *ngFor="let item of character.events?.items | slice: 0:3">
+                {{item.name}}<br>
+              </ng-container>
+            </td>
+          </tr>
+          <div class="spacer"></div>
 
-            <tr routerLink="/characters/{{ character.id }}" routerLinkActive="active-link">
-              <td>
-                <div class="thumb" style="background-image: url('{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}')"></div>
-              </td>
-              <td>
-                <div class="character-name">
-                  {{ character.name }}
-                </div>
-              </td>
-              <td class="character-items">
-                <ng-container *ngFor="let item of character.series?.items | slice: 0:3">
-                  {{item.name}}<br>
-                </ng-container>
-              </td>
-              <td class="character-items">
-                <ng-container *ngFor="let item of character.events?.items | slice: 0:3">
-                  {{item.name}}<br>
-                </ng-container>
-              </td>
-            </tr>
-            <div class="spacer"></div>
+      </ng-container>
 
-        </ng-container>
+    </tbody>
 
-      </tbody>
-
-    </table>
+  </table>
+</div>
 
 </ng-container>
 
