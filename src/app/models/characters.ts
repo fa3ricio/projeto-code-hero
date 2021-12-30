@@ -10,7 +10,7 @@ export class Characters {
     offset: number,
     limit: number,
     total: number,
-    ount: number,
+    count: number,
     results: [ Character ]
   };
   etag?: string

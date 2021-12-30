@@ -3,7 +3,7 @@ import { CharactersService } from 'app/api/characters.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from 'app/models/character';
-import { share } from 'rxjs/operators';
+import { ListCharactersService } from 'app/api/listCharacters.service';
 
 @Component({
   selector: 'app-character-detail',
@@ -15,20 +15,52 @@ export class CharacterDetailComponent implements OnInit {
   characterId: number | string | null;
   character$!: Observable<Character>;
   character!: Character;
+  limit = 10;
 
-  constructor(
-    private charactersService: CharactersService,
-    private route: ActivatedRoute) {
+  constructor(private listCharactersService: ListCharactersService,
+              private route: ActivatedRoute) {
     this.characterId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
+
+    this.goTop();
+
+    this.characterId ? this.characterId = +this.characterId : this.characterId = 0;
+
     if (this.characterId) {
-      this.character$ = this.charactersService.getCharacterDetail(+this.characterId).pipe(share());
-      this.character$.subscribe(result => {
-        this.character = result;
-        console.log(result)})
+
+      let listArray = new Array<any>();
+
+      if (!this.character) {
+
+        this.listCharactersService.getListCharacters(this.limit);
+
+        this.listCharactersService.listCharacters$
+          .subscribe(list => {
+            listArray = [list];
+            this.getCharacterDetail(listArray);
+          });
+
+      }
+
     }
+  }
+
+  getCharacterDetail(result: any[]) {
+    result.forEach(lista => {
+      this.character = lista.data?.results.filter((characterSelected: Character) => {
+        return characterSelected.id == this.characterId;
+      });
+    });
+  }
+
+  goTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
 }

@@ -1,5 +1,12 @@
-<ng-container *ngIf="totalCharacters; let characters; else loading">
+<ng-container *ngIf="listCharacters; let characters; else loading">
 <div class="container">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="search-characters my-4">
+        <app-characters-search></app-characters-search>
+      </div>
+    </div>
+  </div>
   <table class="table table-borderless characters-list">
     <thead>
       <tr>
@@ -43,5 +50,5 @@
 </ng-container>
 
 <ng-template #loading>
-  ...loading
+  <app-loader></app-loader>
 </ng-template>
