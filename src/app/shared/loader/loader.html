@@ -3,8 +3,8 @@
   <span class="sr-only">Carregando...</span>
 </div>
 
-<!-- div class="loading">
+<div class="loading" *ngIf="!fullLoader">
   <div class="spinner-border"></div>
-</div -->
+</div>
 
-<div [ngClass]="{featured: animation}"></div>
+<div [ngClass]="{featured: fullLoader}"></div>

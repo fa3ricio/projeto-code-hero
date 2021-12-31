@@ -47,7 +47,7 @@
 
 .character-detail .title-detail {
   margin: 20px 0;
-  padding: 20px;
+  padding: 20px 40px 20px 20px;
 }
 
 .character-detail .title-detail h1 {
@@ -60,8 +60,7 @@
   background-size: cover;
 
   width: 100%;
-  max-width: 600px;
-  height: 400px;
+  height: 600px;
   display: block;
   border-radius: 4px;
 }
@@ -70,5 +69,5 @@
   display: flex;
   align-items: center;
   font: normal normal normal 16px/22px 'PT Sans';
-  padding: 20px;
+  padding: 20px 40px 20px 20px;
 }

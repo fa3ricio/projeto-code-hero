@@ -24,7 +24,7 @@
   position: relative;
   animation: progress-indeterminate 1s linear infinite;
   height: 4px;
-  background-color: #ec1d24;
+  background-color: #f0d974;
 }
 
 .loading .spinner-border {

@@ -17,10 +17,10 @@
 
         <div class="container-white sup">
           <div class="row">
-            <div class="col-xl-6">
+            <div class="col-xl-8">
               <div class="image-detail" style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
             </div>
-            <div class="col-xl-6">
+            <div class="col-xl-4">
               <div class="title-detail">
                 <h1>{{ person.name }}</h1>
               </div>
@@ -71,6 +71,10 @@
     </ng-container>
 </ng-container>
 
+<footer id="footer">
+  <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>
+</footer>
+
 <ng-template #loading>
-  <app-loader></app-loader>
+  <app-loader [fullLoader]="false"></app-loader>
 </ng-template>

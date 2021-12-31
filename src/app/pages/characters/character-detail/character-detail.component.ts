@@ -15,7 +15,7 @@ export class CharacterDetailComponent implements OnInit {
   characterId: number | string | null;
   character$!: Observable<Character>;
   character!: Character;
-  limit = 10;
+  limit = 50;
 
   constructor(private listCharactersService: ListCharactersService,
               private route: ActivatedRoute) {
@@ -23,6 +23,8 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log(this.character);
 
     this.goTop();
 

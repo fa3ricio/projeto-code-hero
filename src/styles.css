@@ -10,12 +10,18 @@
   padding: 0;
 }
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body.body {
   background-color: var(--background-color);
   font-family: 'PT Sans', sans-serif;
   font-size: 0.875rem;
   color: var(--text-color);
   letter-spacing: 1px;
+  margin-bottom: 116px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -48,7 +54,6 @@ header .logo img {
   height: auto;
 }
 
-
 header .header-info-right {
   display: flex;
   justify-content: right;
@@ -80,6 +85,18 @@ header .header-info-right span.cb {
 header .header-info-right span.cb:hover {
   background-color: var(--text-color);
   color: #FFFFFF;
+}
+
+footer#footer {
+  background-color: #FFFFFF;
+  margin-top: 26px;
+  text-align: center;
+  padding: 26px 26px;
+
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  height: 90px;
 }
 
 table.characters-list {
@@ -128,7 +145,6 @@ table.characters-list td:first-child {
  width: 68px
 }
 
-
 table.characters-list .thumb {
   width: 48px;
   height: 48px;
@@ -171,4 +187,32 @@ table .spacer {
 
 .sup {
   margin-top: -200px;
+}
+
+ul.ngx-pagination {
+  text-align: center;
+  font: normal normal normal 14px/19px 'PT Sans';
+  padding: 0 20px;
+}
+.ngx-pagination .current {
+  color: #FFFFFF !important;
+  background-color: #167ABC !important;
+  border-radius: .25rem;
+  border: 1px solid #167ABC;
+}
+.ngx-pagination a, .ngx-pagination button {
+  color: var(--text-color) !important;
+  border-radius: .25rem !important;
+  border: 1px solid #E5E5E5;
+}
+.ngx-pagination li {
+  margin: 0 8px;
+}
+.ngx-pagination li a:hover {
+  color: #fff !important;
+  border-radius: .25rem !important;
+  background-color: var(--background-color) !important;
+}
+.ngx-pagination .disabled {
+  color: #6c757d !important;
 }
