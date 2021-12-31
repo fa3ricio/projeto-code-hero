@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable, of } from "rxjs";
 import { catchError, take, tap } from 'rxjs/operators';
 import { Characters } from "app/models/characters";
@@ -7,14 +7,20 @@ import { Characters } from "app/models/characters";
 @Injectable({ providedIn: 'root'})
 
 export class CharactersService {
-  private APIURL = 'https://gateway.marvel.com'
-  private CHARACTERSURL = '/v1/public/characters'
-  private APIKEY = '259d79888a01634527fcd76951f071a1'
+  private API_URL = 'https://gateway.marvel.com'
+  private CHARACTERS_URL = '/v1/public/characters'
+  private PUBLIC_API_KEY = '259d79888a01634527fcd76951f071a1'
 
   constructor( private http: HttpClient ) {}
 
-  /** GET Characters from the MARVEL INTERACTIVE API TESTER */
-  getCharacters (limit?: number, offset?: number): Observable<any> {
+  /** GET Characters from the MARVEL INTERACTIVE API TESTER
+   * @param limit - optional value to return the number of items to be returned
+   * @param offset - optional value to return the number of items that will not be returned from the first item | optional
+  */
+  public getCharacters (limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Characters>>;
+  public getCharacters (limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Characters>>>;
+  public getCharacters (limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Characters>>>;
+  public getCharacters (limit?: number, offset?: number, observe: any = 'body', reportProgress = false ): Observable<any> {
 
     let limitList;
     let offsetList;
@@ -22,9 +28,13 @@ export class CharactersService {
     limit ? limitList = `limit=${limit}&` : limitList = '';
     offset ? offsetList = `offset=${offset}&` :  offsetList = '';
 
-    const url = `${this.APIURL}${this.CHARACTERSURL}?${limitList}${offsetList}apikey=${this.APIKEY}`;
+    const url = `${this.API_URL}${this.CHARACTERS_URL}?${limitList}${offsetList}apikey=${this.PUBLIC_API_KEY}`;
 
-    return this.http.get<Characters>(url)
+    return this.http.get<Array<Characters>>(url,
+    {
+      observe: observe,
+      reportProgress: reportProgress
+    })
       .pipe(
         take(1),
         tap(() => console.log('Characters success')),
@@ -33,12 +43,21 @@ export class CharactersService {
 
   }
 
-  /** GET Characters from the MARVEL INTERACTIVE API TESTER */
-  getCharacterDetail (id: number): Observable<any> {
+  /** GET Characters Details from the MARVEL INTERACTIVE API TESTER
+   * @param id - value to the character id
+  */
+  public getCharacterDetail (id: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Characters>>;
+  public getCharacterDetail (id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Characters>>>;
+  public getCharacterDetail (id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Characters>>>;
+  public getCharacterDetail (id: number, observe: any = 'body', reportProgress = false ): Observable<any> {
 
-    const url = `${this.APIURL}${this.CHARACTERSURL}/${id}?apikey=${this.APIKEY}`;
+    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}?apikey=${this.PUBLIC_API_KEY}`;
 
-    return this.http.get<Characters>(url)
+    return this.http.get<Array<Characters>>(url,
+      {
+        observe: observe,
+        reportProgress: reportProgress
+      })
       .pipe(
         take(1),
         tap(() => console.log('Character Detail success')),
@@ -59,7 +78,6 @@ export class CharactersService {
       return of(result as T);
     };
   }
-
 
 }
 

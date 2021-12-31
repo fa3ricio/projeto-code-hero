@@ -200,16 +200,18 @@ ul.ngx-pagination {
   border-radius: .25rem;
   border: 1px solid #167ABC;
 }
-.ngx-pagination a, .ngx-pagination button {
+.ngx-pagination a,
+.ngx-pagination button {
   color: var(--text-color) !important;
   border-radius: .25rem !important;
   border: 1px solid #E5E5E5;
+  background: #F5F5F5 0% 0% no-repeat padding-box;
 }
 .ngx-pagination li {
   margin: 0 8px;
 }
 .ngx-pagination li a:hover {
-  color: #fff !important;
+  color: var(--text-color) !important;
   border-radius: .25rem !important;
   background-color: var(--background-color) !important;
 }

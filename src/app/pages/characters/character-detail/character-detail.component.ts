@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { CharactersService } from 'app/api/characters.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from 'app/models/character';
@@ -12,47 +11,47 @@ import { ListCharactersService } from 'app/api/listCharacters.service';
 })
 export class CharacterDetailComponent implements OnInit {
 
-  characterId: number | string | null;
+  characterId: number | null;
   character$!: Observable<Character>;
   character!: Character;
-  limit = 50;
 
   constructor(private listCharactersService: ListCharactersService,
               private route: ActivatedRoute) {
-    this.characterId = this.route.snapshot.paramMap.get('id');
+    this.characterId! = +this.route.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
 
-    console.log(this.character);
-
     this.goTop();
 
-    this.characterId ? this.characterId = +this.characterId : this.characterId = 0;
+    this.characterId ? this.characterId! = this.characterId : this.characterId! = 0;
 
     if (this.characterId) {
-
       let listArray = new Array<any>();
-
-      if (!this.character) {
-
-        this.listCharactersService.getListCharacters(this.limit);
-
-        this.listCharactersService.listCharacters$
-          .subscribe(list => {
+      this.listCharactersService.listCharacters$
+        .subscribe(list => {
+          if (!list || !Object.keys(list).length) {
+            let id = this.characterId!;
+            this.listCharactersService.getCharacterDetail(id);
+            this.listCharactersService.detailCharacter$
+              .subscribe(result => {
+                listArray = [result];
+                listArray.forEach((characterDetails) => {
+                  this.character = characterDetails.data?.results.map((result: Character) => result);
+                });
+              });
+          } else {
             listArray = [list];
-            this.getCharacterDetail(listArray);
-          });
-
-      }
-
+            this.getCharacter(listArray);
+          }
+        });
     }
   }
 
-  getCharacterDetail(result: any[]) {
+  getCharacter(result: any[]) {
     result.forEach(lista => {
       this.character = lista.data?.results.filter((characterSelected: Character) => {
-        return characterSelected.id == this.characterId;
+        return characterSelected.id === this.characterId!;
       });
     });
   }

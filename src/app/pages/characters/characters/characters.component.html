@@ -1,5 +1,5 @@
 <ng-container *ngIf="listCharacters; let characters; else loading">
-<div class="container">
+<div class="container" *ngIf="characters.data?.results.length; else loading">
   <div class="row">
     <div class="col-xl-12">
       <div class="search-characters my-4">
@@ -55,8 +55,8 @@
     (pageChange)="page = $event"
     autoHide="true"
     responsive="true"
-    previousLabel="&lsaquo;"
-    nextLabel="&rsaquo;">
+    previousLabel=""
+    nextLabel="">
   </pagination-controls>
   <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>
 </footer>

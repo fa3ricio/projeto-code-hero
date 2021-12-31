@@ -17,11 +17,8 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let limit = 50;
-    let offset = undefined;
-
     if(!this.listCharacters || !this.listCharacters.length) {
-      this.listCharactersService.getListCharacters(limit, offset);
+      this.listCharactersService.getListCharacters();
       this.listCharactersService.listCharacters$
         .subscribe(list => {
           this.listCharacters = list;
