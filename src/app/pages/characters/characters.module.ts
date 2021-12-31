@@ -6,6 +6,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { CharactersSearchComponent } from './characters-search/characters-search.component';
+import { CharactersNotFoundComponent } from './characters-not-found/characters-not-found.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CharactersSearchComponent } from './characters-search/characters-search
   declarations: [
     CharactersComponent,
     CharacterDetailComponent,
-    CharactersSearchComponent
+    CharactersSearchComponent,
+    CharactersNotFoundComponent
   ]
 })
 

@@ -1,4 +1,4 @@
-<ng-container *ngIf="character; else loading">
+<div class="container-in" *ngIf="character; else loading">
   <ng-container *ngFor="let person of character">
 
     <!-- Details Start -->
@@ -69,7 +69,7 @@
     <!-- Details End-->
 
     </ng-container>
-</ng-container>
+<div>
 
 <footer id="footer">
   <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>

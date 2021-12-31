@@ -21,7 +21,6 @@ body.body {
   font-size: 0.875rem;
   color: var(--text-color);
   letter-spacing: 1px;
-  margin-bottom: 116px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -176,6 +175,10 @@ table.characters-list .character-items {
 table .spacer {
   display: block;
   height: 8px;
+}
+
+.container-in {
+  padding-bottom: 116px;
 }
 
 .container-white {

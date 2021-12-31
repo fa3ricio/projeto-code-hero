@@ -1,0 +1,23 @@
+.background-heroes {
+  background-image: url('../../../../assets/img/background/020gga_ons_mas_dsk_03.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: calc(100vh - 116px);
+  background-attachment: fixed;
+}
+
+.message-not-found {
+  display: block;
+  position: absolute;
+  top: 120px;
+  color: #FFFFFF;
+  width: 100%;
+  max-width: 580px;
+  padding: 20px 20px;
+}
+
+.message-not-found p {
+  font-size: 24px;
+}

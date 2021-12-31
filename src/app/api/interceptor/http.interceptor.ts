@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpErrorResponse
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -48,13 +42,12 @@ export class ApiInterceptor implements HttpInterceptor {
       )
   }
 
-
   private handleServerSideError(error: HttpErrorResponse): boolean {
     let handled: boolean = false;
     switch (error.status) {
       case 404:
         console.warn("O personagem não foi encontrado ou esta página não existe!");
-        this.router.navigate(['/not-found']);
+        this.router.navigate(['/characters/not-found']);
         handled = true;
         break;
     }
