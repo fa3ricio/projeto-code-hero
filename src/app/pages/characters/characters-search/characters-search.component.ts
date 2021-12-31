@@ -1,8 +1,8 @@
-import { ListCharactersService } from 'app/api/listCharacters.service';
 import { Component, OnInit } from '@angular/core';
 import { Characters } from 'app/models/characters';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { ListCharactersService } from 'app/api/listCharacters.service';
 
 @Component({
   selector: 'app-characters-search',
@@ -12,6 +12,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 export class CharactersSearchComponent implements OnInit {
 
   characters$!: Observable<Characters[]>;
+
   private searchTerms = new Subject<string>();
 
   constructor(private listCharactersService: ListCharactersService) { }
@@ -21,12 +22,11 @@ export class CharactersSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.characters$ = this.searchTerms.pipe(
-      debounceTime(300),
+      debounceTime(1000),
       distinctUntilChanged(),
-      switchMap((term: string) => this.listCharactersService.searchCharaters(term)),
+      switchMap(
+        (term: string) => this.listCharactersService.searchCharaters(term)),
     );
-
   }
 }

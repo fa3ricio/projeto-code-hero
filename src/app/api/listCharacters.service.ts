@@ -2,15 +2,14 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
 import { CharactersService } from 'app/api/characters.service';
 import { Characters } from "app/models/characters";
-import { Character } from "app/models/character";
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 
 export class ListCharactersService {
 
   private listCharactersSubject = new BehaviorSubject<Characters[]>([]);
 
-  constructor(private charactersService: CharactersService) { }
+  constructor(private charactersService: CharactersService) {}
 
   get listCharacters$(): Observable<Characters[]> {
     return this.listCharactersSubject.asObservable();
@@ -32,19 +31,36 @@ export class ListCharactersService {
   }
 
   searchCharaters(term: string): Observable<Characters[]> {
-    let listArray = new Array<any>();
-    if (!term.trim()) {
-      return of([]);
-    }
+    if (!term.trim()) { return of([]); }
 
-    this.listCharacters$.subscribe((list) => {
-      listArray = [list];
-      listArray.forEach(result => {
-          return result.data?.results.filter((characterSelected: Character) => characterSelected.name == term);
-      });
+    let charactersArray: any[] = [];
+    let characterArray: any[] = [];
+    let filterArray: any[] = [];
+    let check = false;
+
+    this.listCharacters$.subscribe(characters => {
+
+      characters ? check = true : check = false;
+
+      if (check) {
+        charactersArray.push(characters);
+        charactersArray.map(character => {
+          characterArray.push(character.data?.results);
+
+          const filterValue = term.toLowerCase();
+
+          characterArray.forEach(select => {
+            filterArray = select.filter(
+              (option: any) => option.name?.toLowerCase().includes(filterValue));
+          });
+
+          return filterArray;
+
+        });
+      }
     });
 
-    throw new Error("Shouldn't be reachable");
+    return of(filterArray);
 
   }
 

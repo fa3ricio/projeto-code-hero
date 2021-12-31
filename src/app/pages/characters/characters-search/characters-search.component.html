@@ -2,12 +2,20 @@
   <h1>Busca de personagens</h1>
   <span>Nome do personagem</span>
 
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div class="form-group has-search">
+    <span class="icon-search">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#8e8e8e" class="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+  </span>
+    <input placeholder="Search" #searchBox id="search-box" (keyup)="search(searchBox.value)" autocomplete="off" />
+  </div>
 
-  <ul class="search-result">
-    <li *ngFor="let character of characters$ | async" >
+  <ul class="search-result" *ngIf="characters$ | async; let characters">
+    <li *ngFor="let character of characters" >
       <a routerLink="/characters/{{character.id}}">
-        {{character.name}}
+        <img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" />
+        {{ character.name }}
       </a>
     </li>
   </ul>
