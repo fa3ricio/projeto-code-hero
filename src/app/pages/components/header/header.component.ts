@@ -18,10 +18,6 @@ export class HeaderComponent implements OnInit {
 
   openProfile() {
     this.profile = !this.profile;
-    if (this.profile === true) {
-      this.menuProfile?.nativeElement.classList.add('show');
-    } else {
-      this.menuProfile?.nativeElement.classList.remove('show');
-    }
+    this.profile ? this.menuProfile?.nativeElement.classList.add('show') : this.menuProfile?.nativeElement.classList.remove('show');
   }
 }

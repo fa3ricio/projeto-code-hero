@@ -3,21 +3,26 @@
   <div class="header-top">
     <!-- Logo Objective -->
     <div class="logo">
-      <a routerLink="/" routerLinkActive="active-link"><img src="assets/img/logo/logo-objective.svg" alt="Objective" /></a>
+      <a routerLink="/"
+        routerLinkActive="active-link">
+        <img src="assets/img/logo/logo-objective.svg" alt="Objective" />
+      </a>
     </div>
     <div class="header-info-right">
-      <a class="dropdown-toggle"
-        href="#"
-        id="navbarDropdownMenuProfile"
-        role="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-        (mouseenter)="openProfile()">
-      <span><strong>{{desenvolvedorAngular}}</strong></span> </a>
-      <span>Teste de Front-end</span>
+      <div class="info-box">
+        <a class="dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuProfile"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          (mouseenter)="openProfile()">
+          <span><strong>{{desenvolvedorAngular}}</strong></span>
+        </a>
+        <span>Teste de Front-end</span>
+      </div>
       <span class="cb">CB</span>
-
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuProfile" #menuProfile>
         <div class="box-profile" (mouseleave)="openProfile()">
           <img src="assets/img/profile/profile-fabricio.png" title="Fabricio Soares" class="image-profile"/>
@@ -38,16 +43,10 @@
               </svg>
               E-mail
             </a>
-
           </div>
-
         </div>
       </div>
-
     </div>
-
   </div>
-
-
   <!-- Header End -->
 </header>

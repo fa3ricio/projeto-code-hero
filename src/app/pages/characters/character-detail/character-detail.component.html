@@ -9,49 +9,64 @@
       </div>
 
       <div class="filter-featured">
-        <div class="image-detail-featured" style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
+        <div class="image-detail-featured"
+          style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
       </div>
     </div>
 
     <div class="container character-detail my-4">
 
-        <div class="container-white sup">
-          <div class="row">
-            <div class="col-xl-8">
-              <div class="image-detail" style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
+      <div class="container-white sup">
+        <div class="row">
+          <div class="col-xl-8">
+            <div class="image-detail"
+              style="background-image: url('{{ person.thumbnail.path }}.{{ person.thumbnail.extension }}');"></div>
+          </div>
+          <div class="col-xl-4">
+            <div class="title-detail">
+              <h1>{{ person.name }}</h1>
             </div>
-            <div class="col-xl-4">
-              <div class="title-detail">
-                <h1>{{ person.name }}</h1>
-              </div>
-              <div class="description-character-detail">
-                <ng-container *ngIf="person.description; else descriptionOff">
-                  <p>{{ person.description }}</p>
-                </ng-container>
-                <ng-template #descriptionOff>
-                  {{ person.name | split }} ainda não tem uma descrição.
-                </ng-template>
-              </div>
+            <div class="description-character-detail">
+              <ng-container *ngIf="person.description; else descriptionOff">
+                <p>{{ person.description }}</p>
+              </ng-container>
+              <ng-template #descriptionOff>
+                {{ person.name | split }} ainda não tem uma descrição.
+              </ng-template>
             </div>
           </div>
-
         </div>
-
-        <app-character-detail-extras [itemType]="'Comics'" [itemContent$]="comics$"></app-character-detail-extras>
-        <app-character-detail-extras [itemType]="'Séries'" [itemContent$]="series$"></app-character-detail-extras>
-        <app-character-detail-extras [itemType]="'Eventos'" [itemContent$]="events$"></app-character-detail-extras>
 
       </div>
 
+      <app-character-detail-extras [itemType]="'Comics'" [itemContent$]="comics$"></app-character-detail-extras>
+      <app-character-detail-extras [itemType]="'Séries'" [itemContent$]="series$"></app-character-detail-extras>
+      <app-character-detail-extras [itemType]="'Eventos'" [itemContent$]="events$"></app-character-detail-extras>
+
+      <div class="row mt-4">
+        <div class="col-xl-12">
+          <a routerLink="/" routerLinkActive="active-link" class="btn btn-secondary">
+            <svg style="vertical-align: text-bottom; margin-right: 8px" xmlns="http://www.w3.org/2000/svg" width="20"
+              height="20" fill="#FFFFFF" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+            </svg>
+            Voltar
+          </a>
+        </div>
+      </div>
+
+    </div>
+
     <!-- Details End-->
 
-    </ng-container>
-<div>
+  </ng-container>
+  <div>
 
-<footer id="footer">
-  <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>
-</footer>
+    <footer id="footer">
+      <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>
+    </footer>
 
-<ng-template #loading>
-  <app-loader [fullLoader]="false"></app-loader>
-</ng-template>
+    <ng-template #loading>
+      <app-loader [fullLoader]="false"></app-loader>
+    </ng-template>

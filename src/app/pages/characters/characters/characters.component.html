@@ -11,8 +11,8 @@
     <thead>
       <tr>
         <th colspan="2" scope="col">Personagem</th>
-        <th scope="col">Séries</th>
-        <th scope="col">Eventos</th>
+        <th class="hidden-sm" scope="col">Séries</th>
+        <th class="hidden-sm" scope="col">Eventos</th>
       </tr>
     </thead>
     <tbody>
@@ -27,12 +27,12 @@
                 {{ character.name }}
               </div>
             </td>
-            <td class="character-items">
+            <td class="character-items hidden-sm">
               <ng-container *ngFor="let serie of character.series?.items | slice: 0:3">
                 {{serie.name}}<br>
               </ng-container>
             </td>
-            <td class="character-items">
+            <td class="character-items hidden-sm">
               <ng-container *ngFor="let event of character.events?.items | slice: 0:3">
                 {{event.name}}<br>
               </ng-container>

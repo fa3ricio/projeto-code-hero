@@ -34,6 +34,7 @@ span.item-info-title {
 }
 
 .imageSmall {
+  max-height: 295px;
   max-width: 200px;
   width: 100%;
 }
