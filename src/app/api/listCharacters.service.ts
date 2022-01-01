@@ -13,7 +13,7 @@ export class ListCharactersService {
   private limit = 50;
   private offset = undefined;
 
-  constructor(private charactersService: CharactersService) {}
+  constructor(private charactersService: CharactersService) { }
 
   get listCharacters$(): Observable<Characters[]> {
     return this.listCharactersSubject.asObservable();
@@ -24,7 +24,7 @@ export class ListCharactersService {
 
   getListCharacters() {
     let checkList;
-    this.listCharacters$.subscribe((list) => {
+    this.listCharacters$.subscribe(list => {
       checkList = list;
       if (checkList.length === 0) {
         this.charactersService.getCharacters(this.limit, this.offset)
@@ -36,7 +36,6 @@ export class ListCharactersService {
   }
 
   getCharacterDetail(id: number) {
-    // let listArray = new Array<Characters>();
     let checkList;
     let listArray: any[] = [];
 
@@ -45,10 +44,10 @@ export class ListCharactersService {
       if (checkList.length === 0) {
         this.charactersService.getCharacterDetail(id)
           .subscribe(character => {
-          listArray.push(character);
-          listArray.forEach((characterDetails: Character[]) => {
-            this.detailCharacterSubject.next(Object.assign({}, characterDetails));
-          });
+            listArray.push(character);
+            listArray.forEach((characterDetails: Character[]) => {
+              this.detailCharacterSubject.next(Object.assign({}, characterDetails));
+            });
           });
       }
     });

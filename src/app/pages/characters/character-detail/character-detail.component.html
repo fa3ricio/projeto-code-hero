@@ -37,32 +37,9 @@
 
         </div>
 
-        <div class="row">
-          <div class="col-xl-4">
-            <div class="character-series p-4">
-              SÉRIES<br>
-              <ng-container *ngFor="let item of person.series.items">
-                {{ item.name }}<br>
-              </ng-container>
-            </div>
-          </div>
-          <div class="col-xl-4">
-            <div class="character-series p-4">
-              EVENTOS<br>
-              <ng-container *ngFor="let item of person.events.items">
-                {{ item.name }}<br>
-              </ng-container>
-            </div>
-          </div>
-          <div class="col-xl-4">
-            <div class="character-series p-4">
-              HISTÓRIAS EM QUADRINHOS<br>
-              <ng-container *ngFor="let item of person.comics.items">
-                {{ item.name }}<br>
-              </ng-container>
-            </div>
-          </div>
-        </div>
+        <app-character-detail-extras [itemType]="'Comics'" [itemContent$]="comics$"></app-character-detail-extras>
+        <app-character-detail-extras [itemType]="'Séries'" [itemContent$]="series$"></app-character-detail-extras>
+        <app-character-detail-extras [itemType]="'Eventos'" [itemContent$]="events$"></app-character-detail-extras>
 
       </div>
 

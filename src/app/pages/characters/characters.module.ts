@@ -1,12 +1,13 @@
-import { SharedModule } from './../../shared/shares.module';
-import { CharactersRoutingModule } from './characters.routing.module';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'app/shared/shares.module';
+import { CharactersRoutingModule } from './characters.routing.module';
 import { CharactersComponent } from './characters/characters.component';
-import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { CharactersSearchComponent } from './characters-search/characters-search.component';
 import { CharactersNotFoundComponent } from './characters-not-found/characters-not-found.component';
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
+import { CharacterDetailExtrasComponent } from './character-detail-extras/character-detail-extras.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CharactersNotFoundComponent } from './characters-not-found/characters-n
     CharactersComponent,
     CharacterDetailComponent,
     CharactersSearchComponent,
-    CharactersNotFoundComponent
+    CharactersNotFoundComponent,
+    CharacterDetailExtrasComponent
   ]
 })
 

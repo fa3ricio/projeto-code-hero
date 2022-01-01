@@ -1,8 +1,13 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Character } from 'app/models/character';
+import { CharactersService } from 'app/api/characters.service';
 import { ListCharactersService } from 'app/api/listCharacters.service';
+import { ComicsCollection } from 'app/models/comicsCollection';
+import { SeriesCollection } from 'app/models/seriesCollection';
+import { EventsCollection } from 'app/models/eventsCollection';
+
 
 @Component({
   selector: 'app-character-detail',
@@ -15,16 +20,20 @@ export class CharacterDetailComponent implements OnInit {
   character$!: Observable<Character>;
   character!: Character;
 
-  constructor(private listCharactersService: ListCharactersService,
+  comics$?: Observable<ComicsCollection[]>;
+  series$?: Observable<SeriesCollection[]>;
+  events$?: Observable<EventsCollection[]>;
+
+  constructor(private charactersService: CharactersService,
+              private listCharactersService: ListCharactersService,
               private route: ActivatedRoute) {
     this.characterId! = +this.route.snapshot.paramMap.get('id')!;
+    this.characterId ? this.characterId! = this.characterId : this.characterId! = 0;
   }
 
   ngOnInit(): void {
 
     this.goTop();
-
-    this.characterId ? this.characterId! = this.characterId : this.characterId! = 0;
 
     if (this.characterId) {
       let listArray = new Array<any>();
@@ -45,6 +54,8 @@ export class CharacterDetailComponent implements OnInit {
             this.getCharacter(listArray);
           }
         });
+
+        this.getExtras();
     }
   }
 
@@ -54,6 +65,12 @@ export class CharacterDetailComponent implements OnInit {
         return characterSelected.id === this.characterId!;
       });
     });
+  }
+
+  getExtras() {
+    this.comics$ = this.charactersService.getCharacterComics(this.characterId!);
+    this.series$ = this.charactersService.getCharacterSeries(this.characterId!);
+    this.events$ = this.charactersService.getCharacterEvents(this.characterId!);
   }
 
   goTop() {

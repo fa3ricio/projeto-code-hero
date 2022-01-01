@@ -1,0 +1,39 @@
+span.item-title {
+  display: block;
+  font: normal normal 700 24px/36px 'PT Sans';
+  padding: 10px 0;
+  margin: 40px 0 0;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+span.item-info-title {
+  display: block;
+  font: normal normal 700 20px/22px 'PT Sans';
+  padding: 10px 0;
+}
+
+.item-content {
+  margin-bottom: 30px;
+  min-height: 560px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 26px 24px -16px rgb(0 0 0 / 40%);
+}
+
+.link-item {
+  bottom: 20px;
+  position: absolute;
+}
+
+.imageMedium {
+  max-height: 300px;
+  max-width: 300px;
+  object-fit: contain;
+  width: 100%;
+}
+
+.imageSmall {
+  max-width: 200px;
+  width: 100%;
+}

@@ -58,6 +58,7 @@ header .header-info-right {
   justify-content: right;
   align-items: center;
   height: 64px;
+  position: relative;
 }
 
 header .header-info-right span {

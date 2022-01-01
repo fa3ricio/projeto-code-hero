@@ -1,0 +1,44 @@
+<ng-container *ngIf="itemContent$ | async; let items">
+
+  <div *ngIf="items.data.results.length" class="row">
+    <div class="col-xl-12">
+      <div class="character-items">
+        <span class="text-uppercase item-title">{{ itemType }}</span><br>
+        <div class="row p-0">
+          <ng-container *ngFor="let item of items.data.results">
+          <div class="col-xl-4">
+            <div class="item-content card">
+              <div class="item-thumb text-center mb-2 mt-4">
+                <ng-container *ngIf="item.thumbnail.path; else notImage">
+                  <img src="{{ item.thumbnail.path}}.{{item.thumbnail.extension}}" title="{{ item.title }}"
+                  [ngClass]="{
+                    'imageMedium': itemType === 'Séries' || itemType === 'Eventos',
+                    'imageSmall': itemType === 'Comics'
+                  }" loading="lazy" />
+                </ng-container>
+                <ng-template #notImage>
+                  <img src="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg" title="Image not found!"
+                  [ngClass]="{
+                    'imageMedium': itemType === 'Séries' || itemType === 'Eventos',
+                    'imageSmall': itemType === 'Comics'
+                  }" loading="lazy" />
+                </ng-template>
+              </div>
+              <div class="item-info">
+                <span class="item-info-title">{{ item.title }}</span>
+                <p>{{ item.description | excerpt: 110 }}</p>
+                <ng-container *ngFor="let url of item.urls">
+                  <ng-container *ngIf="url.type === 'detail'">
+                    <a href="{{url.url}}" class="btn btn-outline-secondary link-item" target="_blank">Veja mais</a>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
