@@ -10,11 +10,13 @@
             <div class="item-content card">
               <div class="item-thumb text-center mb-2 mt-4">
                 <ng-container *ngIf="item.thumbnail.path; else notImage">
-                  <img src="{{ item.thumbnail.path}}.{{item.thumbnail.extension}}" title="{{ item.title }}"
-                  [ngClass]="{
-                    'imageMedium': itemType === 'Séries' || itemType === 'Eventos',
-                    'imageSmall': itemType === 'Comics'
-                  }" loading="lazy" />
+                  <a (click)="openModal(item.id, item.title, item.thumbnail.path,item.thumbnail.extension) ">
+                    <img src="{{ item.thumbnail.path}}.{{item.thumbnail.extension}}" title="{{ item.title }}"
+                    [ngClass]="{
+                      'imageMedium': itemType === 'Séries' || itemType === 'Eventos',
+                      'imageSmall': itemType === 'Comics'
+                    }" loading="lazy" />
+                  </a>
                 </ng-container>
                 <ng-template #notImage>
                   <img src="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg" title="Image not found!"
@@ -41,4 +43,23 @@
     </div>
   </div>
 
+  <ng-container *ngIf="mostrarModal">
+    <div #extras class="modal" id="extras_{{ itemType }}_{{ idModal }}" tabindex="-1"
+        role="dialog" aria-labelledby="extrasModal" aria-hidden="true" (click)="toggle()">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="extrasModalLabel"><span>{{ itemTitle }}</span></h5>
+            <button type="button" class="close btn" data-dismiss="modal" aria-label="Close" (click)="toggle()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="{{ itemModal }}" class="image-modal" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </ng-container>
 </ng-container>

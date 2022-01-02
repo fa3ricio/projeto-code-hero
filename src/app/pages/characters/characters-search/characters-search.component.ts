@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Characters } from 'app/models/characters';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ListCharactersService } from 'app/api/listCharacters.service';
+import { ListCharactersService } from 'app/api/services/listCharacters.service';
 
 @Component({
   selector: 'app-characters-search',

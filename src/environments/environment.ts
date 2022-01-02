@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://gateway.marvel.com/v1/public/',
+  apiPublicKey: '259d79888a01634527fcd76951f071a1',
+  settings: {
+    appTitle: 'Code Hero © MARVEL',
+    version: '0.0.0',
+    charactersLimit: 100,
+    extrasLimit: 6
+  }
 };
 
 /*

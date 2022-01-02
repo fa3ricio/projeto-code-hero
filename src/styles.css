@@ -91,12 +91,16 @@ footer#footer {
   background-color: #FFFFFF;
   margin-top: 26px;
   text-align: center;
-  padding: 26px 26px;
+  padding: 0 26px;
 
   bottom: 0;
   width: 100%;
   position: absolute;
   height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 table.characters-list {
@@ -197,6 +201,7 @@ ul.ngx-pagination {
   text-align: center;
   font: normal normal normal 14px/19px 'PT Sans';
   padding: 0 20px;
+  margin-top: 30px;
 }
 .ngx-pagination .current {
   color: #FFFFFF !important;
@@ -215,9 +220,9 @@ ul.ngx-pagination {
   margin: 0 8px;
 }
 .ngx-pagination li a:hover {
-  color: var(--text-color) !important;
+  color: #FFFFFF !important;
   border-radius: .25rem !important;
-  background-color: var(--background-color) !important;
+  background-color: #167ABC !important;
 }
 .ngx-pagination .disabled {
   color: #6c757d !important;

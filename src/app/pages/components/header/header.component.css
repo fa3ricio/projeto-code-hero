@@ -39,16 +39,8 @@ a.dropdown-toggle:hover {
 }
 
 .dropdown-menu a.dropdown-item:hover {
-  color: var(--primary-color);
+  color: #82d0f5;
   background-color: transparent;
-}
-
-.dropdown-menu hr {
-  background-color: var(--background-color) !important;
-  margin-top: 8px !important;
-  margin-bottom: 8px;
-  border: 0;
-  border-top: 1px solid rgba(0,0,0,.1) !important;
 }
 
 .dropdown-menu .box-profile {
@@ -67,6 +59,7 @@ a.dropdown-toggle:hover {
 
 .image-profile:hover {
   filter: sepia(.2);
+  cursor: none;
 }
 
 @media (max-width: 575.98px) {
@@ -75,6 +68,7 @@ a.dropdown-toggle:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
 }

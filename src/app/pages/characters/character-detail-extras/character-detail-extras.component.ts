@@ -15,4 +15,32 @@ export class CharacterDetailExtrasComponent {
   @Input() itemContent$!: Observable<ComicsCollection> | Observable<SeriesCollection> | Observable<EventsCollection>;
   @Input() itemType!: string;
 
+  idModal?: number;
+  itemModal?: string;
+  itemTitle?: string;
+  mostrarModal: boolean = false;
+
+  toggle() {
+    this.mostrarModal = !this.mostrarModal;
+    if (this.mostrarModal) {
+      (document.querySelector('.body') as HTMLElement).style.overflowY = 'hidden';
+    } else {
+      (document.querySelector('.body') as HTMLElement).style.overflowY = 'auto';
+    }
+  }
+
+  openModal(id?: number, title?: string, path?: string, extension?: string) {
+    this.mostrarModal = !this.mostrarModal;
+    this.idModal = id;
+    this.itemTitle = title;
+    this.itemModal = path + '.' + extension;
+
+    if (this.mostrarModal) {
+      (document.querySelector('.body') as HTMLElement).style.overflowY = 'hidden';
+    } else {
+      (document.querySelector('.body') as HTMLElement).style.overflowY = 'auto';
+    }
+
+  }
+
 }

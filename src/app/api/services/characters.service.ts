@@ -6,13 +6,16 @@ import { Characters } from "app/models/characters";
 import { ComicsCollection } from 'app/models/comicsCollection';
 import { EventsCollection } from 'app/models/eventsCollection';
 import { SeriesCollection } from 'app/models/seriesCollection';
+import { environment } from '../../../environments/environment'
 
 @Injectable({ providedIn: 'root'})
 
 export class CharactersService {
-  private API_URL = 'https://gateway.marvel.com'
-  private CHARACTERS_URL = '/v1/public/characters'
-  private PUBLIC_API_KEY = '259d79888a01634527fcd76951f071a1'
+  private API_URL = environment.apiUrl;
+  private CHARACTERS_URL = 'characters'
+  private PUBLIC_API_KEY = environment.apiPublicKey;
+  private CHARACTERS_LIMIT = environment.settings.charactersLimit;
+  private EXTRAS_LIMIT = environment.settings.extrasLimit;
 
   constructor(private http: HttpClient) { }
 
@@ -28,7 +31,7 @@ export class CharactersService {
     let limitList;
     let offsetList;
 
-    limit ? limitList = `limit=${limit}&` : limitList = '';
+    limit ? limitList = `limit=${limit}&` : limitList = this.CHARACTERS_LIMIT;
     offset ? offsetList = `offset=${offset}&` : offsetList = '';
 
     const url = `${this.API_URL}${this.CHARACTERS_URL}?${limitList}${offsetList}apikey=${this.PUBLIC_API_KEY}`;
@@ -77,7 +80,10 @@ export class CharactersService {
   public getCharacterComics(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ComicsCollection>>>;
   public getCharacterComics(id: number, observe: any = 'body', reportProgress = false): Observable<any> {
 
-    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}/comics?limit=6&apikey=${this.PUBLIC_API_KEY}`;
+    let limitExtras: string;
+    this.EXTRAS_LIMIT ? limitExtras = `limit=${this.EXTRAS_LIMIT}&` : limitExtras = '';
+
+    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}/comics?${limitExtras}apikey=${this.PUBLIC_API_KEY}`;
 
     return this.http.get<Array<ComicsCollection>>(url,
       {
@@ -100,7 +106,10 @@ export class CharactersService {
   public getCharacterEvents(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<EventsCollection>>>;
   public getCharacterEvents(id: number, observe: any = 'body', reportProgress = false): Observable<any> {
 
-    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}/events?limit=6&apikey=${this.PUBLIC_API_KEY}`;
+    let limitExtras: string;
+    this.EXTRAS_LIMIT ? limitExtras = `limit=${this.EXTRAS_LIMIT}&` : limitExtras = '';
+
+    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}/events?${limitExtras}apikey=${this.PUBLIC_API_KEY}`;
 
     return this.http.get<Array<EventsCollection>>(url,
       {
@@ -123,7 +132,10 @@ export class CharactersService {
   public getCharacterSeries(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<SeriesCollection>>>;
   public getCharacterSeries(id: number, observe: any = 'body', reportProgress = false): Observable<any> {
 
-    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}/series?limit=6&apikey=${this.PUBLIC_API_KEY}`;
+    let limitExtras: string;
+    this.EXTRAS_LIMIT ? limitExtras = `limit=${this.EXTRAS_LIMIT}&` : limitExtras = '';
+
+    const url = `${this.API_URL}${this.CHARACTERS_URL}/${id}/series?${limitExtras}apikey=${this.PUBLIC_API_KEY}`;
 
     return this.http.get<Array<SeriesCollection>>(url,
       {

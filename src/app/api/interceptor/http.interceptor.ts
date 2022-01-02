@@ -50,6 +50,11 @@ export class ApiInterceptor implements HttpInterceptor {
         this.router.navigate(['/characters/not-found']);
         handled = true;
         break;
+      case 429:
+        console.warn("O limite de solicitações diárias para a API Marvel foi atingido!");
+        this.router.navigate(['/characters/not-found?erro=limite-de-solicitacoes-excedido']);
+        handled = true;
+        break;
     }
     return handled;
   }

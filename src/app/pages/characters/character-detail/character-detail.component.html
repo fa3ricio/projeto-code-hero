@@ -15,7 +15,6 @@
     </div>
 
     <div class="container character-detail my-4">
-
       <div class="container-white sup">
         <div class="row">
           <div class="col-xl-8">
@@ -36,7 +35,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <app-character-detail-extras [itemType]="'Comics'" [itemContent$]="comics$"></app-character-detail-extras>
@@ -45,7 +43,7 @@
 
       <div class="row mt-4">
         <div class="col-xl-12">
-          <a routerLink="/" routerLinkActive="active-link" class="btn btn-secondary">
+          <a (click)="goBack()" class="btn btn-secondary">
             <svg style="vertical-align: text-bottom; margin-right: 8px" xmlns="http://www.w3.org/2000/svg" width="20"
               height="20" fill="#FFFFFF" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
               <path fill-rule="evenodd"
@@ -61,12 +59,8 @@
     <!-- Details End-->
 
   </ng-container>
-  <div>
+<div>
 
-    <footer id="footer">
-      <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>
-    </footer>
-
-    <ng-template #loading>
-      <app-loader [fullLoader]="false"></app-loader>
-    </ng-template>
+<ng-template #loading>
+  <app-loader [fullLoader]="false"></app-loader>
+</ng-template>

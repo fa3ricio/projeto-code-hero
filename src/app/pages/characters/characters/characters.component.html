@@ -1,65 +1,58 @@
 <ng-container *ngIf="listCharacters; let characters; else loading">
-<div class="container container-in" *ngIf="characters.data?.results.length; else loading">
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="search-characters my-4">
-        <app-characters-search></app-characters-search>
+  <div class="container container-in" *ngIf="characters.data?.results.length; else loading">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="search-characters my-4">
+          <app-characters-search></app-characters-search>
+        </div>
       </div>
     </div>
+    <table class="table table-borderless characters-list">
+      <thead>
+        <tr>
+          <th colspan="2" scope="col">Personagem</th>
+          <th class="hidden-sm" scope="col">Séries</th>
+          <th class="hidden-sm" scope="col">Eventos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let character of characters.data?.results | paginate: configPagination">
+            <tr routerLink="/characters/{{ character.id }}" routerLinkActive="active-link">
+              <td>
+                <div class="thumb" style="background-image: url('{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}')"></div>
+              </td>
+              <td>
+                <div class="character-name">
+                  {{ character.name }}
+                </div>
+              </td>
+              <td class="character-items hidden-sm">
+                <ng-container *ngFor="let serie of character.series?.items | slice: 0:3">
+                  {{serie.name}}<br>
+                </ng-container>
+              </td>
+              <td class="character-items hidden-sm">
+                <ng-container *ngFor="let event of character.events?.items | slice: 0:3">
+                  {{event.name}}<br>
+                </ng-container>
+              </td>
+            </tr>
+            <div class="spacer"></div>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <pagination-controls
+      id="characters-pagination"
+      (pageChange)="pageChange($event)"
+      autoHide="true"
+      responsive="true"
+      previousLabel=""
+      nextLabel="">
+    </pagination-controls>
   </div>
-  <table class="table table-borderless characters-list">
-    <thead>
-      <tr>
-        <th colspan="2" scope="col">Personagem</th>
-        <th class="hidden-sm" scope="col">Séries</th>
-        <th class="hidden-sm" scope="col">Eventos</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let character of characters.data?.results | paginate: { itemsPerPage: itemsPerPage, currentPage: page, id: 'characters-pagination' }">
-
-          <tr routerLink="/characters/{{ character.id }}" routerLinkActive="active-link">
-            <td>
-              <div class="thumb" style="background-image: url('{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}')"></div>
-            </td>
-            <td>
-              <div class="character-name">
-                {{ character.name }}
-              </div>
-            </td>
-            <td class="character-items hidden-sm">
-              <ng-container *ngFor="let serie of character.series?.items | slice: 0:3">
-                {{serie.name}}<br>
-              </ng-container>
-            </td>
-            <td class="character-items hidden-sm">
-              <ng-container *ngFor="let event of character.events?.items | slice: 0:3">
-                {{event.name}}<br>
-              </ng-container>
-            </td>
-          </tr>
-          <div class="spacer"></div>
-
-      </ng-container>
-
-    </tbody>
-
-  </table>
-</div>
 
 </ng-container>
-
-<footer id="footer">
-  <pagination-controls
-    id="characters-pagination"
-    (pageChange)="page = $event"
-    autoHide="true"
-    responsive="true"
-    previousLabel=""
-    nextLabel="">
-  </pagination-controls>
-  <small class="mb-2 d-block">Data provided by Marvel. © 2021 MARVEL.</small>
-</footer>
 
 <ng-template #loading>
   <app-loader [fullLoader]="true"></app-loader>

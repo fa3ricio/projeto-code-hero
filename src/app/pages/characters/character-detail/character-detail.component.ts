@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Character } from 'app/models/character';
-import { CharactersService } from 'app/api/characters.service';
-import { ListCharactersService } from 'app/api/listCharacters.service';
+import { CharactersService } from 'app/api/services/characters.service';
+import { ListCharactersService } from 'app/api/services/listCharacters.service';
 import { ComicsCollection } from 'app/models/comicsCollection';
 import { SeriesCollection } from 'app/models/seriesCollection';
 import { EventsCollection } from 'app/models/eventsCollection';
@@ -26,7 +26,8 @@ export class CharacterDetailComponent implements OnInit {
 
   constructor(private charactersService: CharactersService,
               private listCharactersService: ListCharactersService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
     this.characterId! = +this.route.snapshot.paramMap.get('id')!;
     this.characterId ? this.characterId! = this.characterId : this.characterId! = 0;
   }
@@ -73,12 +74,19 @@ export class CharacterDetailComponent implements OnInit {
     this.events$ = this.charactersService.getCharacterEvents(this.characterId!);
   }
 
-  goTop() {
+  goBack(): void {
+    this.listCharactersService.page$.subscribe(page => {
+      this.router.navigate(["/"], { queryParams: { p: page }, relativeTo: this.route });
+    });
+  }
+
+  private goTop() {
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth'
     });
   }
+
 
 }

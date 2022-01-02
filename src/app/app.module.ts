@@ -4,16 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ApiInterceptor } from './api/interceptor/http.interceptor';
+import { CharactersService } from './api/services/characters.service';
+import { ListCharactersService } from './api/services/listCharacters.service';
 import { CharactersModule } from './pages/characters/characters.module';
 import { HeaderComponent } from './pages/components/header/header.component';
-import { CharactersService } from './api/characters.service';
-import { ListCharactersService } from './api/listCharacters.service';
-import { ApiInterceptor } from './api/interceptor/http.interceptor';
+import { FooterComponent } from './pages/components/footer/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,

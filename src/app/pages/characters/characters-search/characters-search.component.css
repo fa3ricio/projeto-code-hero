@@ -42,7 +42,7 @@
   border: 1px solid #E5E5E5;
   border-radius: 4px;
   margin-top: 8px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: box-shadow 0.2s;
   padding: 4px 8px;
 }
 
