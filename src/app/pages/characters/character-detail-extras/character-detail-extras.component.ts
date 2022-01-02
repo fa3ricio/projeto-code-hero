@@ -22,11 +22,7 @@ export class CharacterDetailExtrasComponent {
 
   toggle() {
     this.mostrarModal = !this.mostrarModal;
-    if (this.mostrarModal) {
-      (document.querySelector('.body') as HTMLElement).style.overflowY = 'hidden';
-    } else {
-      (document.querySelector('.body') as HTMLElement).style.overflowY = 'auto';
-    }
+    this.bodyOverflow();
   }
 
   openModal(id?: number, title?: string, path?: string, extension?: string) {
@@ -34,13 +30,11 @@ export class CharacterDetailExtrasComponent {
     this.idModal = id;
     this.itemTitle = title;
     this.itemModal = path + '.' + extension;
+    this.bodyOverflow();
+  }
 
-    if (this.mostrarModal) {
-      (document.querySelector('.body') as HTMLElement).style.overflowY = 'hidden';
-    } else {
-      (document.querySelector('.body') as HTMLElement).style.overflowY = 'auto';
-    }
-
+  bodyOverflow() {
+    this.mostrarModal ? (document.querySelector('.body') as HTMLElement).style.overflowY = 'hidden' : (document.querySelector('.body') as HTMLElement).style.overflowY = 'auto';
   }
 
 }
