@@ -13,7 +13,7 @@
 
   <ul class="search-result" *ngIf="characters$ | async; let characters">
     <li *ngFor="let character of characters" >
-      <a routerLink="/characters/{{character.id}}">
+      <a routerLink="/characters/{{character.id}}" routerLinkActive="active-link">
         <img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" />
         {{ character.name }}
       </a>

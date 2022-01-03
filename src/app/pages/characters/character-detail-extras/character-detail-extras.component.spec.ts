@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CharacterDetailExtrasComponent } from './character-detail-extras.component';
+import { ExcerptFilter } from 'app/shared/pipes/excerpt';
+import { SplitPipe } from 'app/shared/pipes/splitName';
+
 
 describe('CharactersDetailExtrasComponent', () => {
   let component: CharacterDetailExtrasComponent;
@@ -8,7 +11,11 @@ describe('CharactersDetailExtrasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CharacterDetailExtrasComponent ]
+      declarations: [
+        CharacterDetailExtrasComponent,
+        SplitPipe,
+        ExcerptFilter
+      ]
     })
     .compileComponents();
   });

@@ -10,6 +10,8 @@ import { ListCharactersService } from './api/services/listCharacters.service';
 import { CharactersModule } from './pages/characters/characters.module';
 import { HeaderComponent } from './pages/components/header/header.component';
 import { FooterComponent } from './pages/components/footer/footer/footer.component';
+import { SharedModule } from './shared/shares.module';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { FooterComponent } from './pages/components/footer/footer/footer.compone
     AppRoutingModule,
     BrowserModule,
     CharactersModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     CharactersService,

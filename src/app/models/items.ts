@@ -1,5 +1,5 @@
 export class Items {
-  resourceURI?: string;
-  name?: string;
-  type?: string;
+  resourceURI: string | undefined;
+  name: string | undefined;
+  type?: string | undefined;
 }
