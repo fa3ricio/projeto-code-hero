@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://gateway.marvel.com/v1/public/',
+  apiUrl: 'https://gateway.marvel.com/v1/public/',
   apiPublicKey: '259d79888a01634527fcd76951f071a1',
   settings: {
     appTitle: 'Code Hero © MARVEL',
